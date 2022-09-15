@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go/utils/routes.dart';
 
 class LoginPage extends StatelessWidget {
   @override
@@ -50,7 +51,7 @@ class LoginPage extends StatelessWidget {
                       minimumSize: Size(150, 40),
                     ),
                     onPressed: () {
-                      print("Online mobile store");
+                      Navigator.pushNamed(context, MyRoutes.homeRoute);
                     },
                   )
                 ],
