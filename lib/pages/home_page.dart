@@ -9,7 +9,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("E commerce app"),
+        title: Text("Online Mobile Store App"),
       ),
       body: Center(
         child: Container(
@@ -20,3 +20,4 @@ class HomePage extends StatelessWidget {
     );
   }
 }
+// 3:21 time video
