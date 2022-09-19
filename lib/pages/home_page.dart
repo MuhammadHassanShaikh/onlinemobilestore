@@ -1,11 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:go/models/catalog.dart';
 import 'package:go/utils/widgets/items_widget.dart';
 import '../utils/widgets/drawer.dart';
+import 'package:flutter/services.dart';
+import 'dart:convert';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   final int days = 30;
+
   final String name = "Hassan";
+  @override
+  void initState() {
+    super.initState();
+    loadData();
+  }
+
+  loadData() async {
+    var catalogJson = await rootBundle.loadString("asset/files/catalog.json");
+    
+    print(catalogJson);
+  }
+
   @override
   Widget build(BuildContext context) {
     final dummyList = List.generate(
@@ -31,4 +52,4 @@ class HomePage extends StatelessWidget {
     );
   }
 }
-// 3:34 time video
+// 4 hour time video
