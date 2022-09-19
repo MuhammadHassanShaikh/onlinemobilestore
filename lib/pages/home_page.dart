@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:go/models/catalog.dart';
 import 'package:go/utils/widgets/items_widget.dart';
 import '../utils/widgets/drawer.dart';
-import 'package:flutter/services.dart';
+// import 'package:flutter/services.dart';
 import 'dart:convert';
 
 class HomePage extends StatefulWidget {
@@ -22,9 +22,10 @@ class _HomePageState extends State<HomePage> {
   }
 
   loadData() async {
-    var catalogJson = await rootBundle.loadString("asset/files/catalog.json");
-    
-    print(catalogJson);
+    final catalogJson = await rootBundle.loadString("asset/files/catalog.json");
+    final decodeData = jsonDecode(catalogJson);
+    var productData = decodeData["Products"];
+    print(productData);
   }
 
   @override
