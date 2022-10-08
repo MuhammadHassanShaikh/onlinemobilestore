@@ -3,6 +3,7 @@ import 'package:go/pages/home_page.dart';
 import 'package:go/pages/login_page.dart';
 import 'package:go/utils/routes.dart';
 import 'package:go/utils/widgets/themes.dart';
+import 'package:http/http.dart' as http;
 
 void main() {
   runApp(MyApp());

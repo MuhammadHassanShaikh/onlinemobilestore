@@ -40,17 +40,19 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: ListView.builder(
-          itemCount: dummyList.length,
-          itemBuilder: ((context, index) {
-            return ItemWidget(
-              item: dummyList[index],
-            );
-          }),
-        ),
+        child: (CatalogModel.items != null && CatalogModel.items.isNotEmpty)
+            ? ListView.builder(
+                itemCount: dummyList.length,
+                itemBuilder: ((context, index) => ItemWidget(
+                      item: dummyList[index],
+                    )),
+              )
+            : Center(
+                child: CircularProgressIndicator(),
+              ),
       ),
       drawer: MyDrawer(),
     );
   }
 }
-// 4 hour time video
+// 4:33 hour time video
