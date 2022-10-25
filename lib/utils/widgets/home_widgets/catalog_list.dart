@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:go/pages/home_details_page.dart';
 import 'package:velocity_x/velocity_x.dart';
-import '../../models/catalog.dart';
-import '../home_page.dart';
+// import '../../models/catalog.dart';
+// import '../home_page.dart';
+import '../../../models/catalog.dart';
+import 'catalog_image.dart';
 
 class CatalogList extends StatelessWidget {
   const CatalogList({Key? key}) : super(key: key);
@@ -13,7 +16,11 @@ class CatalogList extends StatelessWidget {
       itemCount: CatalogModel.items.length,
       itemBuilder: (context, index) {
         final catalog = CatalogModel.items[index];
-        return CatalogItem(catalog: catalog);
+        return InkWell(
+          onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeDetailPage(catalog: catalog),
+          ),
+          child: CatalogItem(catalog: catalog),
+          );
       },
     );
   }
@@ -22,13 +29,22 @@ class CatalogList extends StatelessWidget {
 class CatalogItem extends StatelessWidget {
   // const CatalogItem({Key? key, @required this.catalog) : assert(catalog != null), super(key: key);
   final item = catalog;
+  
+  get image => null;
+  
+  static get catalog => null;
   @override
   Widget build(BuildContext context) {
+    var catalog;
+    var image2 = null;
     return VxBox(
         child: Row(
       children: [
-        CatalogImage(
-          image catalog.image
+        Hero(
+          tag: Key(catalog.id.toString()),
+          child: CatalogImage(
+            image catalog.image, image: image2,
+          ),
         ),
         Expanded(child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
