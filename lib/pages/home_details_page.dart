@@ -10,7 +10,9 @@ class HomeDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+      ),
       bottomNavigationBar: Container(
         color: Colors.white,
         child: ButtonBar(
@@ -51,6 +53,10 @@ class HomeDetailPage extends StatelessWidget {
                     catalog.name.text.xl4.bold.make(),
                     catalog.desc.text.textStyle(context.captionStyle).xl.make(),
                     10.heightBox,
+                    "Diam kasd lorem lorem magna ea. Ipsum et dolore sit amet sit sed. Amet et et consetetur dolores diam consetetur sea sed, dolore duo amet sed accusam magna et clita amet, accusam et diam magna ea eirmod est sanctus, dolor sed duo sanctus tempor sed et eirmod, sit consetetur kasd."
+                        .text
+                        .textStyle(context.captionStyle)
+                        .make(),
                   ],
                 ).py64(),
               ),
