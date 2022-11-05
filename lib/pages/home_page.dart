@@ -44,9 +44,14 @@ class _HomePageState extends State<HomePage> {
       (index) => CatalogModel.items[0],
     );
     return Scaffold(
-      floatingActionButton: FloatingActionButton(onPressed: () => Navigator.pushNamed(context, MyRoutes.cartRoute),
-      backgroundColor: Colors.blueAccent,
-      child: Icon(CupertinoIcons.cart),
+      backgroundColor: context.cardColor,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => Navigator.pushNamed(context, MyRoutes.cartRoute),
+        backgroundColor: context.theme.buttonColor,
+        child: Icon(
+          CupertinoIcons.cart,
+          color: Colors.white,
+        ),
       ),
       body: SafeArea(
         child: Container(

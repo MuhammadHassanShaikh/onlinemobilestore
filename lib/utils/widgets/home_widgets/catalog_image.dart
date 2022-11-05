@@ -3,12 +3,14 @@ import 'package:velocity_x/velocity_x.dart';
 
 class CatalogImage extends StatelessWidget {
   final String image;
-  const CatalogImage(image, image,  {Key? key, required this.image }) : super(key: key);
+  const CatalogImage({Key? key, required this.image}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    // ignore: prefer_typing_uninitialized_variables
     var catalog;
-    return Image.network(catalog.image);
-
+    return Image.network(
+      image,
+    ).box.rounded.p8.color(context.canvasColor).make().p16().w40(context);
   }
 }

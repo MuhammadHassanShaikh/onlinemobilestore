@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go/pages/home_details_page.dart';
+import 'package:go/utils/widgets/themes.dart';
 import 'package:velocity_x/velocity_x.dart';
-// import '../../models/catalog.dart';
-// import '../home_page.dart';
 import '../../../models/catalog.dart';
 import 'catalog_image.dart';
 
@@ -17,10 +16,13 @@ class CatalogList extends StatelessWidget {
       itemBuilder: (context, index) {
         final catalog = CatalogModel.items[index];
         return InkWell(
-          onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeDetailPage(catalog: catalog),
-          ),
-          child: CatalogItem(catalog: catalog),
-          );
+          onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => HomeDetailPage(catalog: catalog),
+              )),
+          // child: CatalogItem(catalog: catalog),
+        );
       },
     );
   }
@@ -29,9 +31,9 @@ class CatalogList extends StatelessWidget {
 class CatalogItem extends StatelessWidget {
   // const CatalogItem({Key? key, @required this.catalog) : assert(catalog != null), super(key: key);
   final item = catalog;
-  
+
   get image => null;
-  
+
   static get catalog => null;
   @override
   Widget build(BuildContext context) {
@@ -43,14 +45,17 @@ class CatalogItem extends StatelessWidget {
         Hero(
           tag: Key(catalog.id.toString()),
           child: CatalogImage(
-            image catalog.image, image: image2,
+            image,
+            catalog.image,
+            image: image2,
           ),
         ),
-        Expanded(child: Column(
+        Expanded(
+            child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            catalog.name.text.bold.make(),
+            catalog.name.text.lg.color(context.accentColor).bold.make(),
             catalog.desc.text.textStyle(context.captionStyle).make(),
             10.heightBox,
             ButtonBar(
@@ -58,11 +63,16 @@ class CatalogItem extends StatelessWidget {
               buttonPadding: EdgeInsets.zero,
               children: [
                 "\$${catalog.price}".text.bold.xl.make(),
-                ElevatedButton(onPressed: (){},
-                style: ButtonStyle(backgroundColor: MaterialStateProperty.all(),
-                shape:MaterialStateProperty.all(StadiumBorder(),) 
-                ),
-                 child: "Add to cart".text.make(),)
+                ElevatedButton(
+                  onPressed: () {},
+                  style: ButtonStyle(
+                      backgroundColor:
+                          MaterialStateProperty.all(context.theme.buttonColor),
+                      shape: MaterialStateProperty.all(
+                        const StadiumBorder(),
+                      )),
+                  child: "Add to cart".text.make(),
+                )
               ],
             ).pOnly(right: 8.0),
           ],
@@ -71,4 +81,3 @@ class CatalogItem extends StatelessWidget {
     )).white.roundedLg.square(150).make().py16();
   }
 }
-

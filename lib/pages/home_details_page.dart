@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:go/models/catalog.dart';
+import 'package:go/utils/widgets/themes.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class HomeDetailPage extends StatelessWidget {
   final item = catalog;
-  HomeDetailPage({Key? key}) : super(key: key);
+  HomeDetailPage({Key? key, required Item catalog}) : super(key: key);
 
   static get catalog => null;
 
@@ -13,8 +15,9 @@ class HomeDetailPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
       ),
+      backgroundColor: context.canvasColor,
       bottomNavigationBar: Container(
-        color: Colors.white,
+        color: context.cardColor,
         child: ButtonBar(
           alignment: MainAxisAlignment.spaceBetween,
           buttonPadding: EdgeInsets.zero,
@@ -23,7 +26,8 @@ class HomeDetailPage extends StatelessWidget {
             ElevatedButton(
               onPressed: () {},
               style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(),
+                  backgroundColor:
+                      MaterialStateProperty.all(context.theme.buttonColor),
                   shape: MaterialStateProperty.all(
                     StadiumBorder(),
                   )),
@@ -46,11 +50,14 @@ class HomeDetailPage extends StatelessWidget {
               arcType: VxArcType.CONVEY,
               edge: VxEdge.TOP,
               child: Container(
-                color: Colors.white,
+                color: context.cardColor,
                 width: context.screenWidth,
                 child: Column(
                   children: [
-                    catalog.name.text.xl4.bold.make(),
+                    catalog.name.text.xl4
+                        .color(context.accentColor)
+                        .bold
+                        .make(),
                     catalog.desc.text.textStyle(context.captionStyle).xl.make(),
                     10.heightBox,
                     "Diam kasd lorem lorem magna ea. Ipsum et dolore sit amet sit sed. Amet et et consetetur dolores diam consetetur sea sed, dolore duo amet sed accusam magna et clita amet, accusam et diam magna ea eirmod est sanctus, dolor sed duo sanctus tempor sed et eirmod, sit consetetur kasd."
