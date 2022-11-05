@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go/models/catalog.dart';
 import 'package:go/utils/routes.dart';
-import 'package:go/utils/widgets/items_widget.dart';
-import 'package:go/utils/widgets/themes.dart';
-import '../utils/widgets/drawer.dart';
+// import 'package:go/utils/widgets/items_widget.dart';
+// import 'package:go/utils/widgets/themes.dart';
+// import '../utils/widgets/drawer.dart';
 // import 'package:flutter/services.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'dart:convert';
@@ -41,7 +41,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final dummyList = List.generate(
       20,
-      (index) => CatalogModel.items[0],
+      (index) => CatalogModel.item[0],
     );
     return Scaffold(
       backgroundColor: context.cardColor,
@@ -60,7 +60,7 @@ class _HomePageState extends State<HomePage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               CatalogHeader(),
-              if (CatalogModel.items != null && CatalogModel.items.isNotEmpty)
+              if (CatalogModel.item != null && CatalogModel.item.isNotEmpty)
                 CatalogList().py16().expand()
               else
                 CircularProgressIndicator().centered().expand(),
