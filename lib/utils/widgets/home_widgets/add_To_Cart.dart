@@ -4,25 +4,23 @@ import 'package:velocity_x/velocity_x.dart';
 import '../../../models/catalog.dart';
 import '../../../pages/card.dart';
 
-class addtocard extends StatefulWidget {
+class addtocard extends StatelessWidget {
   final Item = catalog;
-  const addtocard({
+
+  addtocard({
     Key? key,
     required catalog,
   }) : super(key: key);
 
   get catalog => null;
 
-  @override
-  State<addtocard> createState() => _addtocardState();
-}
-
-class _addtocardState extends State<addtocard> {
   final _cart = CartModel();
+
+  static get catalog => null;
 
   @override
   Widget build(BuildContext context) {
-    bool isInCart = _cart.items.contains(widget.catalog) ?? false;
+    bool isInCart = _cart.items.contains(catalog) ?? false;
 
     return ElevatedButton(
       onPressed: () {
@@ -30,8 +28,8 @@ class _addtocardState extends State<addtocard> {
           isInCart = isInCart.toggle();
           final _catalog = CatalogModel();
           _cart.catalog = _catalog;
-          _cart.add(widget.catalog);
-          setState(() {});
+          _cart.add(catalog);
+          // setState(() {});
         }
       },
       style: ButtonStyle(

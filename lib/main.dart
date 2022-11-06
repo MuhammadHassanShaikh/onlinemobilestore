@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:go/core/store.dart';
 import 'package:go/pages/cart_pages.dart';
 import 'package:go/pages/home_page.dart';
 import 'package:go/pages/login_page.dart';
 import 'package:go/utils/routes.dart';
 import 'package:go/utils/widgets/themes.dart';
-import 'package:http/http.dart' as http;
+import 'package:velocity_x/velocity_x.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(VxState(store: MyStore(), child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -28,4 +29,4 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-//7:5
+//7:26
