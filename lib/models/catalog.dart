@@ -8,7 +8,7 @@ static get catModel => CatalogModel._internal;
 
   factory CatalogModel() => catModel;
 
-  static List<Item> item; //error
+  static List<Item> item//error
 
   Item getById(int id) =>
       item.firstWhere((element) => element.id == id, orElse: null);

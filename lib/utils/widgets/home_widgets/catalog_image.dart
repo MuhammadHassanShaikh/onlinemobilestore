@@ -3,7 +3,8 @@ import 'package:velocity_x/velocity_x.dart';
 
 class CatalogImage extends StatelessWidget {
   final String image;
-  const CatalogImage(image, {Key? key, required this.image}) : super(key: key);
+  const CatalogImage(image, image, {Key? key, required this.image})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

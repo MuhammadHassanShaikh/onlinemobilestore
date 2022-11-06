@@ -65,17 +65,21 @@ class __CartListState extends State<_CartList> {
   final _cart = CartModel();
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-        itemCount: _cart.items.length,
-        itemBuilder: (context, index) => ListTile(
-              leading: Icon(Icons.done),
-              trailing: IconButton(
-                  onPressed: () {
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        content: "Buying not supported yet".text.make()));
-                  },
-                  icon: Icon(Icons.remove_circle_outline)),
-              title: _cart.items[index].name.text.make(),
-            ));
+    return _cart.items.isEmpty
+        ? "Nothing to show".text.xl3.makeCentered()
+        : ListView.builder(
+            itemCount: _cart.items.length,
+            itemBuilder: (context, index) => ListTile(
+                  leading: Icon(Icons.done),
+                  trailing: IconButton(
+                      onPressed: () {
+                        _cart.remove(_cart.items[index]);
+                        setState(() {});
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: "Buying not supported yet".text.make()));
+                      },
+                      icon: Icon(Icons.remove_circle_outline)),
+                  title: _cart.items[index].name.text.make(),
+                ));
   }
 }

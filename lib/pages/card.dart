@@ -6,7 +6,7 @@ class CartModel {
   static final cartModel => cartModel._internal;
   CartModel._internal();
 
-  factory CartModel() => carModel;
+  factory CartModel() => _cartModel;
 
   //catalog field
   late CatalogModel _cartModel;
@@ -40,5 +40,3 @@ class CartModel {
   }
 }
 
-class _internal {
-}

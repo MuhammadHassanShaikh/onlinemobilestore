@@ -1,10 +1,9 @@
-// ignore_for_file: non_constant_identifier_names
-
 import 'package:flutter/material.dart';
 import 'package:go/pages/home_details_page.dart';
-import 'package:go/utils/widgets/themes.dart';
+// import 'package:go/utils/widgets/themes.dart';
 import 'package:velocity_x/velocity_x.dart';
 import '../../../models/catalog.dart';
+import '../../../pages/card.dart';
 import 'catalog_image.dart';
 
 class CatalogList extends StatelessWidget {
@@ -65,7 +64,7 @@ class CatalogItem extends StatelessWidget {
               buttonPadding: EdgeInsets.zero,
               children: [
                 "\$${catalog.price}".text.bold.xl.make(),
-                _addtocard(catalog : catalog)
+                addtocard(catalog: catalog)
               ],
             ).pOnly(right: 8.0),
           ],
@@ -75,37 +74,42 @@ class CatalogItem extends StatelessWidget {
   }
 }
 
-class _addtocard extends StatefulWidget {
+class addtocard extends StatefulWidget {
   final Item = catalog;
-  const _addtocard({
-    Key? key, required catalog,
+  const addtocard({
+    Key? key,
+    required catalog,
   }) : super(key: key);
-  
+
   get catalog => null;
 
   @override
-  State<_addtocard> createState() => _addtocardState();
+  State<addtocard> createState() => _addtocardState();
 }
 
-class _addtocardState extends State<_addtocard> {
-  bool isadded = false;
+class _addtocardState extends State<addtocard> {
+  final _cart = CartModel();
 
   @override
   Widget build(BuildContext context) {
+    bool isInCart = _cart.items.contains(widget.catalog) ?? false;
+
     return ElevatedButton(
       onPressed: () {
-        isadded = isadded.toggle();
-        final _catalog = CatalogModel();
-        final _cart = CatalogModel();
-        _cart.add(widget.catalog);
-        setState(() {});
+        if (!isInCart) {
+          isInCart = isInCart.toggle();
+          final _catalog = CatalogModel();
+          _cart.catalog = _catalog;
+          _cart.add(widget.catalog);
+          setState(() {});
+        }
       },
       style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all(context.theme.buttonColor),
           shape: MaterialStateProperty.all(
             const StadiumBorder(),
           )),
-      child: isadded ? Icon(Icons.done) : "Add to cart".text.make(),
+      child: isInCart ? Icon(Icons.done) : "Add to cart".text.make(),
     );
   }
 }
