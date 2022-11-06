@@ -1,12 +1,21 @@
 import 'dart:convert';
 
+import 'package:go/pages/card.dart';
+
 class CatalogModel {
+static get catModel => CatalogModel._internal;
+  CatalogModel._internal();
+
+  factory CatalogModel() => catModel;
+
   static List<Item> item;
 
   Item getById(int id) =>
       item.firstWhere((element) => element.id == id, orElse: null);
 
   Item getByPosition(int pos) => item[pos];
+
+  void add(catalog) {}
 }
 
 // class CatalogModel {

@@ -3,6 +3,11 @@ import 'package:http/http.dart';
 import '../models/catalog.dart';
 
 class CartModel {
+  static final cartModel => cartModel._internal;
+  CartModel._internal();
+
+  factory CartModel() => carModel;
+
   //catalog field
   late CatalogModel _cartModel;
   //Collection of
@@ -33,4 +38,7 @@ class CartModel {
   void remove(Item item) {
     _itemIds.remove(item.id);
   }
+}
+
+class _internal {
 }
