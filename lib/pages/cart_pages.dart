@@ -8,6 +8,7 @@ class CartPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       backgroundColor: context.canvasColor,
       appBar: AppBar(
@@ -30,17 +31,19 @@ class _CartTotal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     final CartModel _cart = (VxState.store as MyStore).cart;
     return SizedBox(
       height: 200,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          "\$${_cart.totalPrice}"
-              .text
-              .xl5
-              .color(context.theme.accentColor)
-              .make(),
+          VxBuilder
+          mutations: {RemoveMutation},
+          (builder: (context,_){
+            return "\$${_cart.totalPrice}"
+            .text.xl5.color(context.theme.accentColor).make();
+          },),
           30.widthBox,
           ElevatedButton(
                   onPressed: () {},
@@ -58,6 +61,7 @@ class _CartTotal extends StatelessWidget {
 class _CartList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    VxState.listen(context, to: [RemoveMutation]);
     final CartModel _cart = (VxState.store as MyStore).cart;
     return _cart.items.isEmpty
         ? "Nothing to show".text.xl3.makeCentered()
@@ -66,12 +70,11 @@ class _CartList extends StatelessWidget {
             itemBuilder: (context, index) => ListTile(
                   leading: Icon(Icons.done),
                   trailing: IconButton(
-                      onPressed: () {
-                        _cart.remove(_cart.items[index]);
-                        // setState(() {});
+                      onPressed: () =>
+                      RemoveMutation(_cart.items![index])
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            content: "Buying not supported yet".text.make()));
-                      },
+                            content: "Buying not supported yet".text.make())), icon: null,;
+                      
                       icon: Icon(Icons.remove_circle_outline)),
                   title: _cart.items[index].name.text.make(),
                 ));
